@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сказка для засыпания</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+        
+        .story {
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .story p {
+            margin-bottom: 20px;
+            animation: slideIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .story p:nth-child(1) { animation-delay: 0.2s; }
+        .story p:nth-child(2) { animation-delay: 0.4s; }
+        .story p:nth-child(3) { animation-delay: 0.6s; }
+        .story p:nth-child(4) { animation-delay: 0.8s; }
+        .story p:nth-child(5) { animation-delay: 1s; }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .goodnight {
+            text-align: center;
+            color: #764ba2;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 40px;
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+        
+        .stars {
+            text-align: center;
+            font-size: 2em;
+            margin-top: 20px;
+            animation: twinkle 2s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Волшебная сказка ✨</h1>
+        <div class="story">
+            <p>Жила-была в облаках маленькая звёздочка по имени Ева. Она светила каждую ночь, охраняя добрые мечты тех, кто спит.</p>
+            
+            <p>Когда наступал вечер, звёздочка спускалась с небес и видела спящих малышей. Для каждого она создавала самые красивые и волшебные сны.</p>
+            
+            <p>Усталости звёздочка не знала, но однажды Луна сказала ей: "Милая Ева, даже волшебным существам нужен отдых. Спи спокойно, и я буду охранять твоих малышей".</p>
+            
+            <p>Звёздочка кивнула, зевнула (да, звёзды тоже зевают!) и погрузилась в сладкий сон. А её друзья — другие звёзды, луна и облака — охраняли её мирный сон.</p>
+            
+            <p>И вот, как и звёздочка Ева, пора и тебе закрыть глазки, расслабить своё тельце и погрузиться в страну снов. Волшебная ночь уже ждёт тебя... 🌙</p>
+        </div>
+        
+        <div class="goodnight">
+            💤 Спи сладко, Ева! 💤<br>
+            Золотых снов тебе! ✨
+        </div>
+        
+        <div class="stars">⭐ ✨ 🌙 ✨ ⭐</div>
+    </div>
+</body>
+</html>
