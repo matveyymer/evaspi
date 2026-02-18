@@ -14,7 +14,6 @@
 }
 
 html, body {
-    min-height: 100%;
     background: #0f0f1a;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
@@ -24,9 +23,9 @@ html, body {
 /* ===== Контейнер ===== */
 .container {
     position: relative;
-    z-index: 5;
+    z-index: 2;
     text-align: center;
-    padding: 60px 20px 200px 20px;
+    padding: 80px 20px;
 }
 
 /* ===== Заголовок ===== */
@@ -59,7 +58,7 @@ p {
     animation-delay: 1.5s;
 }
 
-/* ===== Фото вертикально ===== */
+/* ===== Фото ===== */
 .photos {
     margin-top: 50px;
     display: flex;
@@ -82,12 +81,12 @@ p {
 .photos img:nth-child(2) { animation-delay: 3s; }
 .photos img:nth-child(3) { animation-delay: 4s; }
 
-/* ===== Звёзды ===== */
+/* ===== Звёзды (фон) ===== */
 .stars {
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 0;
 }
 
 .star {
@@ -99,23 +98,21 @@ p {
     animation: twinkle 3s infinite alternate;
 }
 
-/* ===== Цветы ===== */
+/* ===== Цветы (теперь внизу страницы) ===== */
 .flowers {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 150px;
-    z-index: 2;
-    pointer-events: none;
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-bottom: 50px;
 }
 
 .flower {
-    position: absolute;
-    bottom: 0;
-    font-size: 30px;
+    font-size: 35px;
     opacity: 0;
-    transform: translateY(40px) scale(0.5);
-    animation: flowerGrow 4s ease forwards, sway 5s ease-in-out infinite;
+    transform: translateY(30px) scale(0.6);
+    animation: flowerGrow 3s ease forwards, sway 5s ease-in-out infinite;
 }
 
 /* ===== Анимации ===== */
@@ -149,9 +146,9 @@ p {
 }
 
 @keyframes sway {
-    0% { transform: translateY(0) scale(1) rotate(-3deg); }
-    50% { transform: translateY(0) scale(1) rotate(3deg); }
-    100% { transform: translateY(0) scale(1) rotate(-3deg); }
+    0% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+    100% { transform: rotate(-3deg); }
 }
 
 /* ===== Адаптив ===== */
@@ -164,7 +161,6 @@ p {
 <body>
 
 <div class="stars" id="stars"></div>
-<div class="flowers" id="flowers"></div>
 
 <div class="container">
     <h1>ева спи</h1>
@@ -180,6 +176,8 @@ p {
         <img src="IMG_0239.jpeg">
         <img src="IMG_0240.jpeg">
     </div>
+
+    <div class="flowers" id="flowers"></div>
 </div>
 
 <script>
@@ -194,7 +192,7 @@ for (let i = 0; i < 150; i++) {
     starsContainer.appendChild(star);
 }
 
-// 🌸 Цветы (появляются мягко)
+// 🌸 Цветы (внизу страницы)
 const flowersContainer = document.getElementById('flowers');
 const flowerTypes = ["🌸","🌷","🌼","🌺","🌻"];
 
@@ -202,9 +200,7 @@ for (let i = 0; i < 20; i++) {
     const flower = document.createElement('div');
     flower.classList.add('flower');
     flower.innerHTML = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
-    flower.style.left = Math.random() * 100 + '%';
-    flower.style.animationDelay = (Math.random() * 3 + 1) + 's';
-    flower.style.fontSize = (Math.random() * 20 + 25) + 'px';
+    flower.style.animationDelay = (Math.random() * 2) + 's';
     flowersContainer.appendChild(flower);
 }
 </script>
