@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для Евы 💜</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+/* Переливающийся заголовок */
+h1 {
+    font-size: 60px;
+    font-weight: bold;
+    background: linear-gradient(
+        270deg,
+        #ff4ecd,
+        #7b68ee,
+        #00ffff,
+        #ffdd00,
+        #ff4ecd
+    );
+    background-size: 800% 800%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 8s ease infinite;
+}
+
+/* Сообщение */
+p {
+    margin-top: 30px;
+    font-size: 20px;
+    max-width: 500px;
+    opacity: 0;
+    animation: fadeIn 3s ease forwards;
+    animation-delay: 1.5s;
+}
+
+/* Анимации */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 40px;
+    }
+    p {
+        font-size: 16px;
+        padding: 0 20px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<h1>ева спи</h1>
+
+<p>
+малышка Ева, кажется, кто-то зевает? 😴  
+Мне кажется, подушечка уже заждалась тебя.  
+Скорей в кровать 💫
+</p>
+
+</body>
+</html>
