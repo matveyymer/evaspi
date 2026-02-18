@@ -21,10 +21,10 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
-/* Контент */
+/* ===== Контент ===== */
 .container {
     position: relative;
-    z-index: 3;
+    z-index: 5;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -35,7 +35,6 @@ html, body {
     padding: 20px;
 }
 
-/* Заголовок */
 h1 {
     font-size: 60px;
     font-weight: bold;
@@ -53,7 +52,6 @@ h1 {
     animation: gradientMove 8s ease infinite;
 }
 
-/* Сообщение */
 p {
     margin-top: 30px;
     font-size: 20px;
@@ -63,7 +61,7 @@ p {
     animation-delay: 1.5s;
 }
 
-/* Звёзды */
+/* ===== Звёзды ===== */
 .stars {
     position: fixed;
     width: 100%;
@@ -80,10 +78,10 @@ p {
     animation: twinkle 3s infinite alternate;
 }
 
-/* Цветы */
+/* ===== Цветы ===== */
 .flowers {
     position: fixed;
-    bottom: 0;
+    bottom: 120px;
     width: 100%;
     height: 150px;
     z-index: 2;
@@ -99,7 +97,34 @@ p {
     animation: grow 3s ease forwards, sway 4s ease-in-out infinite;
 }
 
-/* Анимации */
+/* ===== Фото-лента ===== */
+.gallery {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    z-index: 3;
+    backdrop-filter: blur(8px);
+    background: rgba(0,0,0,0.35);
+}
+
+.gallery-track {
+    display: flex;
+    gap: 15px;
+    height: 100%;
+    align-items: center;
+    animation: scroll 25s linear infinite;
+}
+
+.gallery img {
+    height: 90px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+/* ===== Анимации ===== */
 @keyframes twinkle {
     from { opacity: 0.2; }
     to { opacity: 1; }
@@ -125,7 +150,12 @@ p {
     100% { transform: scaleY(1) rotate(-3deg); }
 }
 
-/* Адаптив */
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ===== Адаптив ===== */
 @media (max-width: 600px) {
     h1 { font-size: 40px; }
     p { font-size: 16px; }
@@ -146,6 +176,19 @@ p {
     </p>
 </div>
 
+<div class="gallery">
+    <div class="gallery-track">
+        <img src="IMG_0238.jpeg">
+        <img src="IMG_0239.jpeg">
+        <img src="IMG_0240.jpeg">
+
+        <!-- Дубликаты для бесконечного скролла -->
+        <img src="IMG_0238.jpeg">
+        <img src="IMG_0239.jpeg">
+        <img src="IMG_0240.jpeg">
+    </div>
+</div>
+
 <script>
 // ⭐ Звёзды
 const starsContainer = document.getElementById('stars');
@@ -160,7 +203,7 @@ for (let i = 0; i < 150; i++) {
 
 // 🌸 Цветы
 const flowersContainer = document.getElementById('flowers');
-const flowerTypes = ["🌸","🌷","🌼","🌺","💐","🌻"];
+const flowerTypes = ["🌸","🌷","🌼","🌺","🌻"];
 
 for (let i = 0; i < 20; i++) {
     const flower = document.createElement('div');
