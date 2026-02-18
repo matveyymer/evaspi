@@ -14,27 +14,22 @@
 }
 
 html, body {
-    height: 100%;
-    width: 100%;
+    min-height: 100%;
     background: #0f0f1a;
-    overflow: hidden;
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    color: white;
 }
 
-/* ===== Контент ===== */
+/* ===== Контейнер ===== */
 .container {
     position: relative;
     z-index: 5;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-    color: white;
-    padding: 20px;
+    padding: 60px 20px 200px 20px;
 }
 
+/* ===== Заголовок ===== */
 h1 {
     font-size: 60px;
     font-weight: bold;
@@ -52,14 +47,40 @@ h1 {
     animation: gradientMove 8s ease infinite;
 }
 
+/* ===== Сообщение ===== */
 p {
     margin-top: 30px;
     font-size: 20px;
     max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
     opacity: 0;
     animation: fadeIn 3s ease forwards;
     animation-delay: 1.5s;
 }
+
+/* ===== Фото вертикально ===== */
+.photos {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.photos img {
+    width: 90%;
+    max-width: 400px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.3);
+    opacity: 0;
+    transform: translateY(40px);
+    animation: photoAppear 2s ease forwards;
+}
+
+.photos img:nth-child(1) { animation-delay: 2s; }
+.photos img:nth-child(2) { animation-delay: 3s; }
+.photos img:nth-child(3) { animation-delay: 4s; }
 
 /* ===== Звёзды ===== */
 .stars {
@@ -81,7 +102,7 @@ p {
 /* ===== Цветы ===== */
 .flowers {
     position: fixed;
-    bottom: 120px;
+    bottom: 0;
     width: 100%;
     height: 150px;
     z-index: 2;
@@ -92,44 +113,12 @@ p {
     position: absolute;
     bottom: 0;
     font-size: 30px;
-    transform: scaleY(0);
-    transform-origin: bottom;
-    animation: grow 3s ease forwards, sway 4s ease-in-out infinite;
-}
-
-/* ===== Фото-лента ===== */
-.gallery {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 120px;
-    overflow: hidden;
-    z-index: 3;
-    backdrop-filter: blur(8px);
-    background: rgba(0,0,0,0.35);
-}
-
-.gallery-track {
-    display: flex;
-    gap: 15px;
-    height: 100%;
-    align-items: center;
-    animation: scroll 25s linear infinite;
-}
-
-.gallery img {
-    height: 90px;
-    border-radius: 15px;
-    object-fit: cover;
-    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+    opacity: 0;
+    transform: translateY(40px) scale(0.5);
+    animation: flowerGrow 4s ease forwards, sway 5s ease-in-out infinite;
 }
 
 /* ===== Анимации ===== */
-@keyframes twinkle {
-    from { opacity: 0.2; }
-    to { opacity: 1; }
-}
-
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -140,19 +129,29 @@ p {
     to { opacity: 1; }
 }
 
-@keyframes grow {
-    to { transform: scaleY(1); }
+@keyframes photoAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes twinkle {
+    from { opacity: 0.2; }
+    to { opacity: 1; }
+}
+
+@keyframes flowerGrow {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 @keyframes sway {
-    0% { transform: scaleY(1) rotate(-3deg); }
-    50% { transform: scaleY(1) rotate(3deg); }
-    100% { transform: scaleY(1) rotate(-3deg); }
-}
-
-@keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    0% { transform: translateY(0) scale(1) rotate(-3deg); }
+    50% { transform: translateY(0) scale(1) rotate(3deg); }
+    100% { transform: translateY(0) scale(1) rotate(-3deg); }
 }
 
 /* ===== Адаптив ===== */
@@ -169,20 +168,14 @@ p {
 
 <div class="container">
     <h1>ева спи</h1>
+
     <p>
         малышка Ева, кажется, кто-то зевает? 😴<br>
         Мне кажется, подушечка уже заждалась тебя.<br>
         Скорей в кровать 💫
     </p>
-</div>
 
-<div class="gallery">
-    <div class="gallery-track">
-        <img src="IMG_0238.jpeg">
-        <img src="IMG_0239.jpeg">
-        <img src="IMG_0240.jpeg">
-
-        <!-- Дубликаты для бесконечного скролла -->
+    <div class="photos">
         <img src="IMG_0238.jpeg">
         <img src="IMG_0239.jpeg">
         <img src="IMG_0240.jpeg">
@@ -201,7 +194,7 @@ for (let i = 0; i < 150; i++) {
     starsContainer.appendChild(star);
 }
 
-// 🌸 Цветы
+// 🌸 Цветы (появляются мягко)
 const flowersContainer = document.getElementById('flowers');
 const flowerTypes = ["🌸","🌷","🌼","🌺","🌻"];
 
@@ -210,7 +203,7 @@ for (let i = 0; i < 20; i++) {
     flower.classList.add('flower');
     flower.innerHTML = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
     flower.style.left = Math.random() * 100 + '%';
-    flower.style.animationDelay = (Math.random() * 3) + 's';
+    flower.style.animationDelay = (Math.random() * 3 + 1) + 's';
     flower.style.fontSize = (Math.random() * 20 + 25) + 'px';
     flowersContainer.appendChild(flower);
 }
